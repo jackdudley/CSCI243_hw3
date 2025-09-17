@@ -16,7 +16,7 @@
 /// on a line of its own. You should make the formatting consistent.
 /// </li>
 /// <li>  documentation: documentation is non-existent except for this block.
-/// </li>
+/// </li> @author Jack Dudley
 /// </ol>
 ///
 
