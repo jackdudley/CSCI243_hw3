@@ -140,7 +140,7 @@ int main(int argc, char *args[])
       {
           for(col = 0; col<20; col++)
           {
-              printf("%s", life[row][col]);
+              printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
           }
           puts(" ");
       }
@@ -152,7 +152,7 @@ int main(int argc, char *args[])
           {
               for(col = 0; col<20; col++)
               {
-                  printf("%s", life[row][col]);
+                  printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
               }
               puts(" ");
           }

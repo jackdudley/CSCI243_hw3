@@ -1,0 +1,67 @@
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/stu9/s18/jbd6204/Courses/CSCI243/Homeworks/hw3/CSCI243_hw3/act1/good-life 123
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+        ..Welcome to the Game of life..
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+(gdb) display row
+1: row = 0
+(gdb) display col
+2: col = 0
+(gdb) whatis life
+type = char [20][20]
+(gdb) display life[row][col]
+3: life[row][col] = 0 '\000'
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+1: row = 0
+2: col = 1
+3: life[row][col] = 0 '\000'
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+1: row = 0
+2: col = 2
+3: life[row][col] = 0 '\000'
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+1: row = 0
+2: col = 3
+3: life[row][col] = 0 '\000'
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+1: row = 0
+2: col = 4
+3: life[row][col] = 0 '\000'
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+143                   printf("%s", life[row][col]);
+1: row = 0
+2: col = 5
+3: life[row][col] = 0 '\000'
+(gdb) bt
+#0  main (argc=2, args=0x7fffffffe2d8) at good-life.c:143
+(gdb) quit
+A debugging session is active.
+
+        Inferior 1 [process 24185] will be killed.
+
+fixed two printf statements that used %s to print a given character instead of uisng %c, which is for characters
+(lines 143 and 155)
