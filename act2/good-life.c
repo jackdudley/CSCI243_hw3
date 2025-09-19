@@ -30,29 +30,11 @@ void header(void) {
 
 void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and y params
    int row, col;
-   int neighbors = 0;
-   for(row = 1; row<SIZE-1; row++) {
-      for(col = 1; col<SIZE-1; col++) {
-         if(&life[row][col]== "*") {
-            if(life[row - 1][col - 1] == '*')
-               ++neighbors;
-            if(life[row - 1][col] == '*')
-               ++neighbors;
-            if(life[row - 1][col + 1] == '*')
-               ++neighbors;
-            if(life[row][col - 1] == '*')
-               ++neighbors;
-            if(life[row][col + 1] == '*')
-               ++neighbors;
-            if(life[row + 1][col - 1] == '*')
-               ++neighbors;
-            if(life[row + 1][col] == '*')
-               ++neighbors;
-            if(life[row + 1][col + 1] == '*')
-               ++neighbors;
-            if(neighbors == 2 || neighbors == 3) {
-               life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
-            }
+   for(row = 0; row<SIZE; row++) {
+      for(col = 0; col<SIZE; col++) {
+         int neighbors = calculate_neighbors(row, col, SIZE, life);
+         if(neighbors == 2 || neighbors == 3) {
+            life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
          }
       }
    }
@@ -61,33 +43,42 @@ void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and
 
 void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x and y
    int row, col;
-   int neighbors = 0;
-   for(row = 1; row<SIZE-1; row++) {
-      for(col = 1; col<SIZE-1; col++) {
-         if(&life[row][col]== " ") {
-            if(life[row - 1][col - 1] == '*')
-               neighbors++;
-            if(life[row - 1][col] == '*')
-               neighbors++;
-            if(life[row - 1][col + 1] == '*')
-               neighbors++;
-            if(life[row][col - 1] == '*')
-               neighbors++;
-            if(life[row][col + 1] == '*')
-               neighbors++;
-            if(life[row + 1][col - 1] == '*')
-               neighbors++;
-            if(life[row + 1][col] == '*')
-               neighbors++;
-            if(life[row + 1][col + 1] == '*')
-               neighbors++;
-            if(neighbors == 3){
-               life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
-            }
+   for(row = 0; row<SIZE; row++) {
+      for(col = 0; col<SIZE; col++) {
+         int neighbors = calculate_neighbors(row, col, SIZE, life);
+         if(neighbors == 3){
+            life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
          }
       }
    }
    return;
+}
+
+int calculate_neighbors(int row, int col, int size, char life[][size]) {
+   int neighbors = 0;
+   if(life[row][col]== ' ') {
+      int up = (row-1 + SIZE) % SIZE;
+      int down = (row+1 + SIZE) % SIZE;
+      int left = (col-1 + SIZE) % SIZE;
+      int right = (col+1 + SIZE) % SIZE;
+      if(life[up][col] == '*')
+         neighbors++;
+      if(life[up][right] == '*')
+         neighbors++;
+      if(life[row][right] == '*')
+         neighbors++;
+      if(life[down][right] == '*')
+         neighbors++;
+      if(life[down][col] == '*')
+         neighbors++;
+      if(life[down][left] == '*')
+         neighbors++;
+      if(life[row][left] == '*')
+         neighbors++;
+      if(life[up][left] == '*')
+         neighbors++;
+   }
+   return neighbors;
 }
 
 
