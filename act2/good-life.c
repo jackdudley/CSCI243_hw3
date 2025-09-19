@@ -22,7 +22,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#define SIZE 20
+#define GENERATIONS 50
 void header(void) {
    printf("\n\t..Welcome to the Game of life..\n");
 }
@@ -30,8 +31,8 @@ void header(void) {
 void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and y params
    int row, col;
    int neighbors = 0;
-   for(row = 1; row<19; row++) {
-      for(col = 1; col<19; col++) {
+   for(row = 1; row<SIZE-1; row++) {
+      for(col = 1; col<SIZE-1; col++) {
          if(&life[row][col]== "*") {
             if(life[row - 1][col - 1] == '*')
                ++neighbors;
@@ -61,8 +62,8 @@ void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and
 void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x and y
    int row, col;
    int neighbors = 0;
-   for(row = 1; row<19; row++) {
-      for(col = 1; col<19; col++) {
+   for(row = 1; row<SIZE-1; row++) {
+      for(col = 1; col<SIZE-1; col++) {
          if(&life[row][col]== " ") {
             if(life[row - 1][col - 1] == '*')
                neighbors++;
@@ -91,12 +92,10 @@ void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x 
 
 
 int main(int argc, char *args[]) {
-   char life[20][20];
+   char life[SIZE][SIZE];
    int orgs; // fix 4 removed unused variable gens
    int i, row, col; // fix 4 removed unused variable a, b
    int count = 0;
-   int x = 19;
-   int y = 19;
    // fix 4 removed unused variable ans
    if (argc != 2) { 
       return 1; 
@@ -110,32 +109,32 @@ int main(int argc, char *args[]) {
 
    for(i = 0; i<orgs; i++) {
       row = rand();
-      row %= 20;
+      row %= SIZE;
       col = rand();
-      col %= 20;
+      col %= SIZE;
       life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
    }
 
-   for(row = 0; row<20; row++) {
-      for(col = 0; col<20; col++) {
+   for(row = 0; row<SIZE; row++) {
+      for(col = 0; col<SIZE; col++) {
          if(life[row][col] != '*') {
             life[row][col] = ' '; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
          }
       }
    }
 
-   for(row = 0; row<20; row++) {
-      for(col = 0; col<20; col++) {
+   for(row = 0; row<SIZE; row++) {
+      for(col = 0; col<SIZE; col++) {
          printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
       }
       puts(" ");
    }
 
-   for (int i = 1; i<=51; i++) {
-      birth_rule(20, life); // fix 5 fixed function call to not use unused vars
-      survival_rule(20, life); // fix 5 fixed function call to not use unused vars
-      for(row = 0; row<20; row++) {
-         for(col = 0; col<20; col++) {
+   for (int i = 1; i<=GENERATIONS; i++) {
+      birth_rule(SIZE, life); // fix 5 fixed function call to not use unused vars
+      survival_rule(SIZE, life); // fix 5 fixed function call to not use unused vars
+      for(row = 0; row<SIZE; row++) {
+         for(col = 0; col<SIZE; col++) {
             printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
          }
          puts(" ");
