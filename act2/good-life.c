@@ -27,7 +27,7 @@ void header(void) {
    printf("\n\t..Welcome to the Game of life..\n");
 }
 
-void survival_rule(char life[][20]) { // fix 4, removed unused x and y params
+void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and y params
    int row, col;
    int neighbors = 0;
    for(row = 1; row<19; row++) {
@@ -58,7 +58,7 @@ void survival_rule(char life[][20]) { // fix 4, removed unused x and y params
    return;
 }
 
-void birth_rule(char life[][20]) { // fix 3 removed unused params x and y
+void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x and y
    int row, col;
    int neighbors = 0;
    for(row = 1; row<19; row++) {
@@ -132,8 +132,8 @@ int main(int argc, char *args[]) {
    }
 
    for (int i = 1; i<=51; i++) {
-      birth_rule(life); // fix 5 fixed function call to not use unused vars
-      survival_rule(life); // fix 5 fixed function call to not use unused vars
+      birth_rule(20, life); // fix 5 fixed function call to not use unused vars
+      survival_rule(20, life); // fix 5 fixed function call to not use unused vars
       for(row = 0; row<20; row++) {
          for(col = 0; col<20; col++) {
             printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
