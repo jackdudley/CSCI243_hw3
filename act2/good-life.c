@@ -119,15 +119,15 @@ int main(int argc, char *args[]) {
    orgs = strtol( args[1], NULL, 10 );
    // random seed to keep outputs consistent
    srand( 31 );
-
-   for(i = 0; i<orgs; i++) {
+   int placed = 0;
+   while(placed < orgs) {
       row = rand();
       row %= SIZE;
       col = rand();
       col %= SIZE;
       if(life[row][col] != '*') {
-         life[row][col] = '*';  // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
-      }  
+         life[row][col] = '*';
+         placed++;
    }
 
    for(row = 0; row<SIZE; row++) {
