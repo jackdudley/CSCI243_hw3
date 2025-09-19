@@ -56,7 +56,7 @@ void survivalRule(char life[][20], int x, int y)
                   ++neighbors;
                if(neighbors == 2 || neighbors == 3)
                {
-                  life[row][col] == '*';
+                  life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
                }
             }
          }
@@ -92,7 +92,7 @@ void birthRule(char life[][20], int x, int y)
                   neighbors++;
                if(neighbors == 3)
                {
-                   life[row][col] == '*';
+                   life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
                }
             }
          }
@@ -124,7 +124,7 @@ int main(int argc, char *args[])
           row %= 20;
           col = rand();
           col %= 20;
-          life[row][col] == '*';
+          life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
       }
 
       for(row = 0; row<20; row++)
@@ -132,7 +132,7 @@ int main(int argc, char *args[])
           for(col = 0; col<20; col++)
           {
               if(life[row][col] != '*')
-                  life[row][col] == ' ';
+                  life[row][col] = ' '; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
           }
       }
 
