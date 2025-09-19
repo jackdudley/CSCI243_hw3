@@ -1,0 +1,29 @@
+commit 10176728495df3214b7f349a1de61a24b517fde0
+Author: Jack Benjamin Dudley <jbd6204@rit.edu>
+Date:   Fri Sep 19 12:37:49 2025 -0400
+
+    modified good-life.c to fix garbage output
+
+commit 810f7b98abc7aa8280fd6402526f7ec25619d312
+Author: Jack Benjamin Dudley <jbd6204@rit.edu>
+Date:   Wed Sep 17 11:27:09 2025 -0400
+
+    fix 1: stopped crashes caused by incorrect printf statement using %s instead of %c for character array
+
+commit 0ee2c03d74dfa4638c20b10ec988c17f02786ff3
+Author: Jack Benjamin Dudley <jbd6204@rit.edu>
+Date:   Wed Sep 17 11:16:28 2025 -0400
+
+    minor changes
+
+commit b4d76c2329be1ee27e590d8e577e93cff2005106
+Author: Jack Benjamin Dudley <jbd6204@rit.edu>
+Date:   Wed Sep 17 10:29:08 2025 -0400
+
+    added debug 1
+
+commit 9da1e1795f81a85911d4747a8102a101776be7c6
+Author: Jack Benjamin Dudley <jbd6204@rit.edu>
+Date:   Wed Sep 17 10:12:44 2025 -0400
+
+    initial baseline commit
