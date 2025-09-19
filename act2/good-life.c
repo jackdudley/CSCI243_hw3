@@ -32,7 +32,7 @@ void survival_rule(int size, char life[][size]) { // fix 4, removed unused x and
    int row, col;
    for(row = 0; row<SIZE; row++) {
       for(col = 0; col<SIZE; col++) {
-         int neighbors = calculate_neighbors(row, col, SIZE, life);
+         int neighbors = calculate_neighbors(row, col, life);
          if(neighbors == 2 || neighbors == 3) {
             life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
          }
@@ -45,7 +45,7 @@ void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x 
    int row, col;
    for(row = 0; row<SIZE; row++) {
       for(col = 0; col<SIZE; col++) {
-         int neighbors = calculate_neighbors(row, col, SIZE, life);
+         int neighbors = calculate_neighbors(row, col, life);
          if(neighbors == 3){
             life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
          }
@@ -54,9 +54,9 @@ void birth_rule(int size, char life[][size]) { // fix 3 removed unused params x 
    return;
 }
 
-int calculate_neighbors(int row, int col, int size, char life[][size]) {
+int calculate_neighbors(int row, int col, char life[][SIZE]) {
    int neighbors = 0;
-   if(life[row][col]== ' ') {
+   if(life[row][col] == ' ') {
       int up = (row-1 + SIZE) % SIZE;
       int down = (row+1 + SIZE) % SIZE;
       int left = (col-1 + SIZE) % SIZE;
