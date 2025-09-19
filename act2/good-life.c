@@ -109,7 +109,7 @@ void birth_survival_rules(int size, char life[][size]) { // fix 4, removed unuse
 int main(int argc, char *args[]) {
    char life[SIZE][SIZE];
    int orgs; // fix 4 removed unused variable gens
-   int i, row, col; // fix 4 removed unused variable a, b
+   int row, col; // fix 4 removed unused variable a, b
    // fix 4 removed unused variable ans
    if (argc != 2) { 
       return 1; 
