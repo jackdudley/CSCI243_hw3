@@ -28,6 +28,16 @@ void header(void) {
    printf("\n\t..Welcome to the Game of life..\n");
 }
 
+/**
+ * this function calculates the amount of neighbors for a given row, and column on the life board
+ * it checks all 8 directions and wraps around like a cylinder for cells on the edges of the board
+ * @param row row to check neighbors
+ * @param col column to check neighbors
+ * @param size size of one side of the game board square
+ * @param life current life array
+ * @returns number of neigbors for a given row and column
+ * 
+ */
 int calculate_neighbors(int row, int col, int size, char life[][size]) {
    int neighbors = 0;
    int up = (row-1 + size) % size;
@@ -52,7 +62,16 @@ int calculate_neighbors(int row, int col, int size, char life[][size]) {
       neighbors++;
    return neighbors;
 }
-
+/**
+ * 
+ * this function uses the size parameter to create a copy array of the current life array
+ * it then calls the get neighors function for every cell on the board
+ * after neighbors are calculated for an individual cell, the living or 
+ * death of a cell is determined according to the rules. 
+ * the function then updates the life array accordingly with new lives and deaths
+ * @param size size of one side the game board square
+ * @param life current board of life including all living and dead cells
+ */
 void birth_survival_rules(int size, char life[][size]) { // fix 4, removed unused x and y params
    int row, col;
    char rules_array[size][size];
@@ -78,6 +97,15 @@ void birth_survival_rules(int size, char life[][size]) { // fix 4, removed unuse
    return;
 }
 
+/**
+ * The random seed is set to 31 to have constant output and the program
+ * uses SIZE and GENERATIONS to get the corrosponding values for the user
+ * @param argc The number of command ine arguments. Expects 2 (name + organism count).
+ * @param args An array of command-line argument strings. args[1] is the
+ * number of initial organisms.
+ * @return Returns 0 on success, and 1 if the command line
+ * argument count is incorrect.
+ */
 int main(int argc, char *args[]) {
    char life[SIZE][SIZE];
    int orgs; // fix 4 removed unused variable gens
@@ -88,10 +116,9 @@ int main(int argc, char *args[]) {
       return 1; 
    }
    header();
-
    // convert command line argument to an int
    orgs = strtol( args[1], NULL, 10 );
-
+   // random seed to keep outputs consistent
    srand( 31 );
 
    for(i = 0; i<orgs; i++) {
@@ -116,7 +143,7 @@ int main(int argc, char *args[]) {
       }
       puts(" ");
    }
-
+   // runs for a set amount of generations
    for (int i = 1; i<=GENERATIONS; i++) {
       birth_survival_rules(SIZE, life);
       for(row = 0; row<SIZE; row++) {
