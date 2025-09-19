@@ -110,7 +110,6 @@ int main(int argc, char *args[]) {
    char life[SIZE][SIZE];
    int orgs; // fix 4 removed unused variable gens
    int i, row, col; // fix 4 removed unused variable a, b
-   int count = 0;
    // fix 4 removed unused variable ans
    if (argc != 2) { 
       return 1; 
@@ -126,7 +125,9 @@ int main(int argc, char *args[]) {
       row %= SIZE;
       col = rand();
       col %= SIZE;
-      life[row][col] = '*'; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
+      if(life[row][col] != '*') {
+         life[row][col] = '*';  // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
+      }  
    }
 
    for(row = 0; row<SIZE; row++) {
@@ -143,8 +144,11 @@ int main(int argc, char *args[]) {
       }
       puts(" ");
    }
+
+   printf("\ngeneration: %d\n", 0);
+
    // runs for a set amount of generations
-   for (int i = 1; i<=GENERATIONS; i++) {
+   for (int i = 1; i<GENERATIONS; i++) {
       birth_survival_rules(SIZE, life);
       for(row = 0; row<SIZE; row++) {
          for(col = 0; col<SIZE; col++) {
@@ -152,8 +156,7 @@ int main(int argc, char *args[]) {
          }
          puts(" ");
       }
-      printf("\ngeneration: %d\n", count);
-      count++;
+      printf("\ngeneration: %d\n", i);
    }
    return 0;
 }
