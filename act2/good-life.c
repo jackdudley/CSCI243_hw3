@@ -119,6 +119,11 @@ int main(int argc, char *args[]) {
    orgs = strtol( args[1], NULL, 10 );
    // random seed to keep outputs consistent
    srand( 31 );
+   for(int i = 0; i < SIZE; i++) {
+      for(int c = 0; c < SIZE; c++) {
+         life[i][c] = ' ';
+      }
+   }
    int placed = 0;
    while(placed < orgs) {
       row = rand();
