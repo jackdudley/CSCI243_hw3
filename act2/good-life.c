@@ -63,14 +63,14 @@ void birth_survival_rules(int size, char life[][size]) { // fix 4, removed unuse
    }
    for(row = 0; row<size; row++) {
       for(col = 0; col<size; col++) {
-         int neighbors = calculate_neighbors(row, col, size, life);
-         if(life[row][col] == ' ') {
+         int neighbors = calculate_neighbors(row, col, size, rules_array);
+         if(rules_array[row][col] == ' ') {
             if(neighbors == 3) {
-               rules_array[row][col] = '*';
+               life[row][col] = '*';
             }
          } else {
             if(!(neighbors == 2 || neighbors == 3)) {
-               rules_array[row][col] = ' '; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
+               life[row][col] = ' '; // fix 2: uses == instead of = operator, doesn't assign a value to the array. fixed.
             }
          }
       }
@@ -118,8 +118,7 @@ int main(int argc, char *args[]) {
    }
 
    for (int i = 1; i<=GENERATIONS; i++) {
-      birth_rule(SIZE, life); // fix 5 fixed function call to not use unused vars
-      survival_rule(SIZE, life); // fix 5 fixed function call to not use unused vars
+      birth_survival_rules(SIZE, life);
       for(row = 0; row<SIZE; row++) {
          for(col = 0; col<SIZE; col++) {
             printf("%c", life[row][col]); // fix 1: changed %s to %c because the array is a character array
