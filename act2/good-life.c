@@ -154,7 +154,7 @@ int main(int argc, char *args[]) {
    printf("\ngeneration: %d\n", 0);
 
    // runs for a set amount of generations
-   for (int i = 1; i<GENERATIONS-1; i++) {
+   for (int i = 1; i<GENERATIONS; i++) {
       birth_survival_rules(SIZE, life);
       for(row = 0; row<SIZE; row++) {
          for(col = 0; col<SIZE; col++) {
