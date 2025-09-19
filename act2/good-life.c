@@ -128,6 +128,7 @@ int main(int argc, char *args[]) {
       if(life[row][col] != '*') {
          life[row][col] = '*';
          placed++;
+      }
    }
 
    for(row = 0; row<SIZE; row++) {
